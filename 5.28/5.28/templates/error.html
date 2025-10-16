@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>错误</title>
+    <style>
+        /* 设置整个页面的背景图片 */
+        body {
+            min-height: 100vh; /* 确保背景覆盖整个视口 */
+            margin: 0; /* 去掉默认的外边距 */
+            background-image: url('https://ai-public.mastergo.com/ai/img_res/4fee30149818ccd702b39cafd4be3baa.jpg'); /* 替换为你的图片路径 */
+            background-size: cover; /* 使背景图片覆盖整个页面 */
+            background-position: center; /* 将背景图片居中 */
+            background-repeat: no-repeat; /* 防止背景图片重复 */
+            display: flex; /* 使用Flexbox布局 */
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            font-family: Arial, sans-serif; /* 设置字体 */
+        }
+
+        /* 错误信息容器的样式 */
+        .error-container {
+            background: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+            padding: 20px; /* 内边距 */
+            border-radius: 10px; /* 圆角边框 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+            width: 340px; /* 宽度 */
+            text-align: center; /* 文本居中 */
+        }
+
+        h1 {
+            margin-bottom: 10px; /* 底部外边距 */
+        }
+
+        p {
+            margin-bottom: 15px; /* 底部外边距 */
+        }
+
+        a {
+            color: #41ac3d; /* 链接颜色 */
+            text-decoration: none; /* 去掉下划线 */
+            display: inline-block; /* 使链接可以设置内边距 */
+            padding: 10px 15px; /* 内边距 */
+            border: 1px solid #41ac3d; /* 边框样式 */
+            border-radius: 5px; /* 圆角边框 */
+        }
+
+        a:hover {
+            background-color: #41ac3d; /* 鼠标悬停时的背景颜色 */
+            color: white; /* 鼠标悬停时的文字颜色 */
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>错误</h1>
+        <p>{{ error }}</p>
+        <a href="/">返回首页</a>
+    </div>
+</body>
+</html>

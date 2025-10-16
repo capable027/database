@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>豆瓣电影API</title>
+    <style>
+        /* 设置整个页面的背景图片 */
+        body {
+            min-height: 100vh; /* 确保背景覆盖整个视口 */
+            margin: 0; /* 去掉默认的外边距 */
+            background-image: url('https://ai-public.mastergo.com/ai/img_res/4fee30149818ccd702b39cafd4be3baa.jpg'); /* 替换为你的图片路径 */
+            background-size: cover; /* 使背景图片覆盖整个页面 */
+            background-position: center; /* 将背景图片居中 */
+            background-repeat: no-repeat; /* 防止背景图片重复 */
+            display: flex; /* 使用Flexbox布局 */
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            font-family: Arial, sans-serif; /* 设置字体 */
+        }
+
+        /* 主容器的样式 */
+        .container {
+            background: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+            padding: 20px; /* 内边距 */
+            border-radius: 10px; /* 圆角边框 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+            width: 800px; /* 宽度 */
+            max-width: 100%; /* 确保在小屏幕上不会溢出 */
+        }
+
+        /* 导航栏的样式 */
+        .nav {
+            background-color: #f5f5f5; /* 背景颜色 */
+            padding: 10px; /* 内边距 */
+            margin-bottom: 20px; /* 底部外边距 */
+        }
+
+        .nav a {
+            margin-right: 15px; /* 右边距 */
+            color: #41ac3d; /* 链接颜色 */
+            text-decoration: none; /* 去掉下划线 */
+        }
+
+        .nav a:hover {
+            text-decoration: underline; /* 鼠标悬停时显示下划线 */
+        }
+
+        /* 错误和成功信息的样式 */
+        .error {
+            color: red; /* 错误信息颜色 */
+        }
+
+        .success {
+            color: green; /* 成功信息颜色 */
+        }
+
+        /* 电影项目的样式 */
+        .movie-item {
+            border: 1px solid #ddd; /* 边框样式 */
+            padding: 15px; /* 内边距 */
+            margin-bottom: 15px; /* 底部外边距 */
+        }
+
+        .movie-title {
+            font-size: 1.2em; /* 字体大小 */
+            font-weight: bold; /* 加粗 */
+            margin-bottom: 5px; /* 底部外边距 */
+        }
+
+        .movie-info {
+            color: #666; /* 文字颜色 */
+            margin-bottom: 10px; /* 底部外边距 */
+        }
+
+        /* 删除按钮的样式 */
+        .btn-delete {
+            background-color: #ff4d4f; /* 背景颜色 */
+            color: white; /* 文字颜色 */
+            border: none; /* 去掉边框 */
+            padding: 5px 10px; /* 内边距 */
+            cursor: pointer; /* 鼠标悬停时显示手型 */
+        }
+
+        /* 表单按钮的样式 */
+        button {
+            background-color: #41ac3d; /* 背景颜色 */
+            color: white; /* 文字颜色 */
+            border: none; /* 去掉边框 */
+            padding: 5px 10px; /* 内边距 */
+            cursor: pointer; /* 鼠标悬停时显示手型 */
+        }
+
+        button:hover {
+            background-color: #388e3c; /* 鼠标悬停时的背景颜色 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            {% if session.username %}
+                <span>当前用户: {{ session.username }} ({{ session.role }})</span>
+                <a href="/logout">退出登录</a>
+            {% else %}
+                <a href="/login">登录</a>
+                <a href="/register">注册</a>
+            {% endif %}
+        </div>
+
+        <h1>欢迎使用豆瓣电影API</h1>
+
+        <div class="content">
+            <h3>功能列表:</h3>
+            <ul>
+                <li><a href="/movies">查看所有电影</a></li>
+                <li>
+                    <form action="/movies/search" method="get" style="display: inline;">
+                        <label for="keyword">搜索电影名称:</label>
+                        <input type="text" id="keyword" name="keyword" placeholder="输入电影名称" required>
+                        <button type="submit">搜索</button>
+                    </form>
+                </li>
+                <li>
+                    <form action="/movies/rating_range" method="get" style="display: inline;">
+                        <label>选择电影评分</label>
+                        <input type="number" name="min_rating" placeholder="最低评分" step="0.1" min="0" max="10">
+                        <label>分——</label>
+                        <input type="number" name="max_rating" placeholder="最高评分" step="0.1" min="0" max="10">
+                        <label>分之间的电影</label>
+                        <button type="submit">筛选</button>
+                    </form>
+                </li>
+                {% if session.role == '管理员' %}
+                    <li><a href="/movies/delete">删除电影</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

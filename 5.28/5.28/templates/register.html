@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <style>
+        /* 设置整个页面的背景图片 */
+        body {
+            min-height: 100vh; /* 确保背景覆盖整个视口 */
+            margin: 0; /* 去掉默认的外边距 */
+            background-image: url('https://ai-public.mastergo.com/ai/img_res/4fee30149818ccd702b39cafd4be3baa.jpg'); /* 替换为你的图片路径 */
+            background-size: cover; /* 使背景图片覆盖整个页面 */
+            background-position: center; /* 将背景图片居中 */
+            background-repeat: no-repeat; /* 防止背景图片重复 */
+            display: flex; /* 使用Flexbox布局 */
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            font-family: Arial, sans-serif; /* 设置字体 */
+        }
+
+        /* 注册表单的样式 */
+        .register-container {
+            background: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+            padding: 20px; /* 内边距 */
+            border-radius: 10px; /* 圆角边框 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+            width: 340px; /* 宽度 */
+        }
+
+        h1 {
+            text-align: center; /* 标题居中 */
+        }
+
+        label {
+            display: block; /* 每个标签占一行 */
+            margin-bottom: 5px; /* 底部外边距 */
+        }
+
+        input, select {
+            width: 95%; /* 输入框和选择框宽度 */
+            padding: 10px; /* 内边距 */
+            margin-bottom: 10px; /* 底部外边距 */
+            border: 1px solid #ccc; /* 边框样式 */
+            border-radius: 5px; /* 圆角边框 */
+        }
+
+        button {
+            width: 100%; /* 按钮宽度 */
+            padding: 10px; /* 内边距 */
+            background-color: #41ac3d; /* 按钮背景颜色 */
+            color: white; /* 按钮文字颜色 */
+            border: none; /* 去掉边框 */
+            border-radius: 5px; /* 圆角边框 */
+            cursor: pointer; /* 鼠标悬停时显示手型 */
+        }
+
+        button:hover {
+            background-color: #388e3c; /* 鼠标悬停时的背景颜色 */
+        }
+
+        p {
+            text-align: center; /* 文本居中 */
+        }
+
+        a {
+            color: #41ac3d; /* 链接颜色 */
+            text-decoration: none; /* 去掉下划线 */
+        }
+
+        a:hover {
+            text-decoration: underline; /* 鼠标悬停时显示下划线 */
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h1>用户注册</h1>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <form method="post">
+            <label for="username">用户名:</label>
+            <input type="text" id="username" name="username" required><br>
+            <label for="password">密码:</label>
+            <input type="password" id="password" name="password" required><br>
+            <label for="role">身份:</label>
+            <select id="role" name="role">
+                <option value="用户">普通用户</option>
+                <option value="管理员">管理员</option>
+            </select><br>
+            <button type="submit">注册</button>
+        </form>
+        <p>已有账户？<a href="/login">返回登录</a></p>
+    </div>
+</body>
+</html>
